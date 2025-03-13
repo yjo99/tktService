@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ticket Service</title>
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #001a33;
+            background-image: url('/images/2.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            width: 110%;
+            margin: 0 auto;
+            padding: 10%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="submit"], input[type="Mob"], input[type="CCN"], input[type="CCV"] {
+            width: 130%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #5aaafa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a4e74;
+        }
+
+        .error {
+            color: red;
+        }
+
+        form {
+            width: 70%;
+        }
+
+        div {
+        }
+
+        p {
+            text-align: center;
+            background-color: #001a33;
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .prodIcon {
+            width: 10%;
+            align: left;
+        }
+
+        .MainIcon {
+            width: 100%;
+
+        }
+
+        .defaultibmlogo {
+            align: center;
+        }
+
+        .defaultbrandinglogo1 {
+            align: right;
+        }
+    </style>
+</head>
+<body>
+<h1 class="prod_name">Welcome to Ticket Service</h1>
+
+<table id="main_tbl" class="main_tbl" cellpadding="0" cellspacing="3" role="presentation">
+    <tbody>
+    <tr>
+        <td valign="top">
+            <img class="MainIcon"
+                 src="/images/dark-logo.gif" alt=""> </img>
+        </td>
+        <td class="input_pad">
+            <div class="container">
+                <img class="prodIcon"
+                     src="/images/mx_icon_iot18.png"
+                     alt="ICD"></img>
+                <h2>Ticket Payment</h2>
+                <h2>Enter the email registered with the request</h2>
+
+
+                    <div th:if="${generalError}" class="error">
+                        <i class="fas fa-exclamation-circle error-icon"></i>
+                        <span th:text="${generalError}"></span>
+                    </div>
+                    <form th:action="@{/ticket}" th:object="${tktForm}" method="post">
+                        <label for="email">Registered Email</label>
+                        <input type="email" id="email" required th:field="*{email}" />
+                        <div th:if="${#fields.hasErrors('email')}" class="error" th:errors="*{email}">
+                            <i class="fas fa-exclamation-circle error-icon"></i>
+                            <span></span>
+                        </div>
+                        <input type="submit" value="Submit"/>
+                    </form>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>© Copyright Alexandria Port Authority . All rights reserved. See product license for details.</p>
+
+<!--<div class="form-container">-->
+<!--    <h1>Email Form</h1>-->
+<!--    <div th:if="${generalError}" class="error">-->
+<!--        <i class="fas fa-exclamation-circle error-icon"></i>-->
+<!--        <span th:text="${generalError}"></span>-->
+<!--    </div>-->
+<!--    <form th:action="@{/ticket}" th:object="${tktForm}" method="post">-->
+<!--        <label for="email">Email:</label>-->
+<!--        <input type="text" id="email" th:field="*{email}" />-->
+<!--        <div th:if="${#fields.hasErrors('email')}" class="error" th:errors="*{email}">-->
+<!--            <i class="fas fa-exclamation-circle error-icon"></i>-->
+<!--            <span></span>-->
+<!--        </div>-->
+<!--        <button type="submit">Submit</button>-->
+<!--    </form>-->
+<!--</div>-->
+</body>
+</html>

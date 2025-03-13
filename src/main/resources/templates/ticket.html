@@ -1,0 +1,196 @@
+
+<!DOCTYPE
+        html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Confirm Payment Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #001a33;
+            background-image: url('/images/2.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            width: 150%;
+            margin: 0 auto;
+            padding: 10%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #5aaafa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0a4e74;
+        }
+
+        .error {
+            color: red;
+        }
+
+        form {
+            width: 70%;
+        }
+
+        div {
+        }
+
+        p {
+            text-align: center;
+            background-color: #001a33;
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .prodIcon {
+            width: 10%;
+            align: left;
+        }
+
+        .MainIcon {
+            width: 100%;
+
+        }
+
+        .defaultibmlogo {
+            align: center;
+        }
+
+        .defaultbrandinglogo1 {
+            align: right;
+        }
+    </style>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        async function
+        submitPaymentRequest() {
+
+            const randomSecret = /*[[${paymentResponse.randomSecret}]]*/ "default";
+            const HashedRequestObject = /*[[${paymentResponse.hashedRequestObject}]]*/ "default";
+            const SenderID = /*[[${paymentResponse.senderID}]]*/ "default";
+            const LanguageId = /*[[${paymentResponse.languageId}]]*/ "default";
+            const RequestObject = /*[[${paymentResponse.requestObject}]]*/ "default";
+
+            const url = /*[[${paymentResponse.redirectURI}]]*/ "default";
+
+            setTimeout(5000);
+
+            try {
+
+                const form = document.createElement("form");
+
+                form.method = "POST";
+
+                form.action = url;
+
+                form.target = "_self";
+
+                const formData = {
+
+                    RandomSecret: randomSecret,
+
+                    HashedRequestObject: HashedRequestObject,
+
+                    SenderID: SenderID,
+
+                    LanguageId: LanguageId,
+
+                    RequestObject: RequestObject,
+
+                };
+
+                console.log(formData);
+                for (const key in formData) {
+
+                    const input = document.createElement("input");
+
+                    input.type = "hidden";
+
+                    input.name = key;
+
+                    input.value = formData[key];
+
+                    form.appendChild(input);
+
+                }
+                document.body.appendChild(form);
+                form.submit();
+            } catch (error) {
+                console.error("Error: ", error.message);
+            }
+
+        }
+        /*]]>*/
+    </script>
+
+</head>
+
+<body>
+<h1 class="prod_name">Welcome to Ticket Service</h1>
+
+
+<table id="main_tbl" class="main_tbl" cellpadding="0" cellspacing="3" role="presentation">
+    <tbody>
+    <tr>
+        <td valign="top">
+            <img class="MainIcon"
+                 src="/images/dark-logo.gif" alt=""> </img>
+        </td>
+        <td class="input_pad">
+            <div class="container">
+                <img class="prodIcon"
+                     src="/images/mx_icon_iot18.png"
+                     alt="ICD"></img>
+                <h2>confirm payment</h2>
+
+
+                <button onclick="submitPaymentRequest()">Submit</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>© Copyright Alexandria Port Authority . All rights reserved. See product license for details.</p>
+
+</body>
+
+</html>

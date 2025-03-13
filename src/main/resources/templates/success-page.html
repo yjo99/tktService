@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>تأكيد الدفع</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #001a33;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            width: 110%;
+            margin: 0 auto;
+            padding: 10%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="submit"], input[type="Mob"], input[type="CCN"], input[type="CCV"] {
+            width: 130%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #5aaafa;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0a4e74;
+        }
+
+        .error {
+            color: red;
+        }
+
+        form {
+            width: 70%;
+        }
+
+        div {
+        }
+
+        p {
+            text-align: center;
+            background-color: #001a33;
+            color: #ffffff;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+
+        .prodIcon {
+            width: 10%;
+            align: left;
+        }
+
+        .MainIcon {
+            width: 100%;
+
+        }
+
+        .defaultibmlogo {
+            align: center;
+        }
+
+        .defaultbrandinglogo1 {
+            align: right;
+        }
+
+        .success-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px; /* Increase size */
+            height: 80px; /* Increase size */
+            background-color: green;
+            color: white;
+            font-size: 40px; /* Increase check mark size */
+            font-weight: bold;
+            border-radius: 50%;
+            margin: 20px auto; /* Centers it */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #001a33;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            text-align: right;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .details div {
+            margin: 5px 0;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-print {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-close {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-return {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>الهيئة العامة لميناء الإسكندرية</h1>
+    <img src="/images/alex_port_logo_colored.jpeg" alt="Logo" class="logo">
+    <div class="success-icon">
+        ✔
+    </div>
+    <h1>تم تنفيذ عملية الدفع بنجاح</h1>
+    <div class="container">
+        <div class="details">
+            <div>
+                <strong>العملية لصالح:</strong>
+                <span th:text="${client}">
+            </div>
+            <div>
+                <strong>الرقم المرجعي:</strong>
+                <span th:text="${paymentRequestNumber}">
+            </div>
+            <div>
+                <strong>وقت العملية:</strong>
+                <span th:text="${#dates.format(trxDate, 'dd-MM-yyyy HH:mm:ss')}">
+            </div>
+            <div>
+                <strong>القيمة المدفوعة:</strong>
+                <span th:text="${billAmount}">
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <img class="prodIcon" src="/images/mx_icon_iot18.png" alt="ICD">
+        <button class="btn btn-print" onclick="window.print()">طباعة</button>
+        <button class="btn btn-close" onclick="window.location.href='about:blank'; window.close();">إغلاق</button>
+        <button class="btn btn-return" onclick="window.location.href='/ticket'">
+            الرجوع إلى الصفحة الرئيسية
+        </button>
+    </div>
+</div>
+</body>
+</html>
